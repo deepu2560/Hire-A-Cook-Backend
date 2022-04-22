@@ -1,5 +1,6 @@
 const express = require("express");
 
+
 const router = express.Router();
 
 const Cook = require("../Models/cookModel");
@@ -18,8 +19,14 @@ router.post("",async(req,res)=>{
 })
 
 router.get("",async(req,res)=>{
+    let rate = req.query.rate || 1;
+    const exp = req.query.exp || 1;
+    const rating = req.query.rating || 1;
+    const page = req.query.page || 1;
+    const size = req.query.size || 5;
     try{
-        const cook = await Cook.find().lean().exec()
+        const cook = await Cook.find().skip((page-1)*size).limit(size)
+        .sort({"rate":rate}).lean().exec()
         return res.send(cook)
     }
     catch(error)
@@ -38,7 +45,6 @@ router.put("/:id",async(req,res)=>{
     {
         return res.send({error})
     }
-    
 })
 
 router.delete("/:id",async(req,res)=>{
