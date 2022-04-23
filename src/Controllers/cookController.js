@@ -20,8 +20,6 @@ router.post("",async(req,res)=>{
 
 router.get("",async(req,res)=>{
     let rate = req.query.rate || 1;
-    const exp = req.query.exp || 1;
-    const rating = req.query.rating || 1;
     const page = req.query.page || 1;
     const size = req.query.size || 5;
     try{

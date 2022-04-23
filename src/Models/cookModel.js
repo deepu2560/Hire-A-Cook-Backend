@@ -11,7 +11,7 @@ const CookSchema = new mongoose.Schema({
     reviews: [{type:String,required:true}],
     cuisines: [{type:String,required:true}],
     images: {type:String,required:true},
-    rate: {type:String,required:true}
+    rate: {type:Number,required:true}
 },
     {
         versionKey:false,
