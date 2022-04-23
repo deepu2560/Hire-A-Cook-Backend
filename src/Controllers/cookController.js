@@ -34,6 +34,17 @@ router.get("",async(req,res)=>{
     
 })
 
+router.get("/:id",async(req,res)=>{
+    try{
+        const cook = await Cook.findById(req.params.id);
+        return res.send(cook)
+    }
+    catch(error)
+    {
+        return res.send({error})
+    }
+})
+
 router.put("/:id",async(req,res)=>{
     try{
         const cook = await Cook.findByIdAndUpdate(req.params.id,req.body,{new:true});
